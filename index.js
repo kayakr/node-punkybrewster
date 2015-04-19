@@ -1,0 +1,26 @@
+var cheerio = require('cheerio');
+var request = require('request');
+var tabula = require('tabula');
+
+var url = 'http://www.punkybrewster.co.nz/';
+
+var beers = [];
+
+request(url, function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    var $ = cheerio.load(body);
+
+    $('h2').slice(1).each(function(i, element) { // skip first h2.
+        beers[i] = {};
+        beers[i].name = $(this).text();
+        beers[i].price = $(this).next('.paragraph').text();
+        beers[i].abv = $(this).next('.paragraph').next('.paragraph').text();
+    });
+
+    //console.log(JSON.stringify(beers));
+    tabula(beers, {columns: ['name', 'price', 'abv'], sort: ['name']});
+  }
+  else {
+    echo url + ' returned ' + response.statusCode;
+  }
+});

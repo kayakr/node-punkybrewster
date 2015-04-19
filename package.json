@@ -1,0 +1,23 @@
+{
+  "name": "punky-brewster-scraper",
+  "version": "0.0.1",
+  "description": "Simpel scraper for Punky Brewster beer sales",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "request": "^2.51.0",
+    "tabula": "^1.4.2"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "license": "GPL"
+}
